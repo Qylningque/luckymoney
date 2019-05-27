@@ -1,5 +1,7 @@
 package com.linco.luckymoney.controller;
 
+import com.linco.luckymoney.config.LimitConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +18,12 @@ import java.math.BigDecimal;
 @RestController
 public class HelloController {
 
-    @Value("${minMoney}")
-    private BigDecimal minMoney;
+    @Autowired
+    private LimitConfig limitConfig;
 
-    @GetMapping("/minMoney")
-    public String minMoney() throws Exception{
-        return "minMoney:" + minMoney;
+    @GetMapping("/limit")
+    public String limit() throws Exception{
+        return "说明:" + limitConfig.getDescription();
     }
 
     @GetMapping("helloSpringBoot")
